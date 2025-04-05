@@ -1,31 +1,44 @@
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@heroui/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  Link,
+  Image,
+} from "@heroui/react";
 
-export default function CardUI({}) {
+type CardUIProps = {
+  title: string;
+  description: string;
+  content?: string;
+};
+
+export default function CardUI({ title, content }: CardUIProps) {
   return (
-    <Card className="max-w-[400px]">
+    <Card className="max-w-[400px] hover:shadow-lg transition-shadow duration-300">
       <CardHeader className="flex gap-3">
         <Image
-          alt="heroui logo"
+          alt={`${title} logo`}
           height={40}
           radius="sm"
           src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
           width={40}
         />
         <div className="flex flex-col">
-          <p className="text-md">HeroUI</p>
-          <p className="text-small text-default-500">heroui.com</p>
+          <p className="text-md font-semibold">{title}</p>
+         
         </div>
       </CardHeader>
       <Divider />
       <CardBody>
-        <p>Make beautiful websites regardless of your design experience.</p>
+        <p>
+          {content ||
+            "Make beautiful websites regardless of your design experience."}
+        </p>
       </CardBody>
       <Divider />
-      <CardFooter>
-        <Link isExternal showAnchorIcon href="https://github.com/heroui-inc/heroui">
-          Visit source code on GitHub.
-        </Link>
-      </CardFooter>
+      
     </Card>
   );
 }
