@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import { BentoGridUI } from "@/components/bentoUI";
+import { Divider } from "@heroui/react";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
         <span className={title({ color: "violet" })}>
           A State-of-the-Art IoT Solution&nbsp;
         </span>
-        <Divider />
+        <Divider className="bg-violet" />
         <span className={title()}>
           
         </span>
