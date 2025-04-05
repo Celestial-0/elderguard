@@ -15,8 +15,8 @@ type CardUIProps = {
 
 export default function CardUI({ title, content }: CardUIProps) {
   return (
-    <Card className="max-w-[400px] hover:shadow-lg transition-shadow duration-300">
-      <CardHeader className="flex gap-3">
+    <Card className=" hover:shadow-lg transition-shadow duration-300 hover:scale-105 ">
+      <CardHeader className="flex gap-2">
         <Image
           alt={`${title} logo`}
           height={40}
@@ -26,18 +26,13 @@ export default function CardUI({ title, content }: CardUIProps) {
         />
         <div className="flex flex-col">
           <p className="text-md font-semibold">{title}</p>
-         
         </div>
       </CardHeader>
       <Divider />
       <CardBody>
-        <p>
-          {content ||
-            "Made with ❤️ by Yash | Byte&Circuits"}
-        </p>
+        <p>{content || "Made with ❤️ by Yash | Byte&Circuits"}</p>
       </CardBody>
       <Divider />
-      
     </Card>
   );
 }

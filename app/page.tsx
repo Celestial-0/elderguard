@@ -16,7 +16,7 @@ export default function Home() {
         <span className={title({ color: "violet" })}>
           A State-of-the-Art IoT Solution&nbsp;
         </span>
-        <br />
+        <Divider />
         <span className={title()}>
           
         </span>

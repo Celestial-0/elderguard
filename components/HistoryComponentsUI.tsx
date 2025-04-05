@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { DateRangePicker } from "@heroui/react";
+import { DateRangePicker, Divider } from "@heroui/react";
 import {
   parseAbsoluteToLocal,
   CalendarDateTime,
@@ -135,7 +135,7 @@ export default function DateTimeRangeTableUI() {
             }
           }}
         />
-        <br />
+        <Divider />
         <Table
           aria-label="Sensor data table"
           classNames={{ table: "min-h-[40px]" }}

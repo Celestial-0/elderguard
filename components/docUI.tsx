@@ -64,9 +64,9 @@ export default function DocUI() {
 
       <section className="mb-12">
         <h2 className="text-3xl font-semibold mb-4">Key Features</h2>
-        <ul className="flex flex-wrap gap-6 text-left">
+        <ul className="flex flex-wrap gap-3 text-left">
           {data.key_features.map((feature, index) => (
-            <li key={index} className="w-full md:w-1/2 lg:w-1/3">
+            <li key={index} className="md:w-1/2 lg:w-1/3">
               <CardUI title={feature.name} content={feature.description} />
             </li>
           ))}
@@ -82,7 +82,7 @@ export default function DocUI() {
             {data.technical_architecture.hardware_components.map(
               (component, index) => (
                 <li key={index}>
-                  <span className="font-bold text-white">
+                  <span className="font-bold">
                     {component.name}:
                   </span>{" "}
                   {component.description}
