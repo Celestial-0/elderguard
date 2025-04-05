@@ -32,6 +32,10 @@ export const siteConfig = {
       href: "/profile",
     },
     {
+      label: "History",
+      href: "/history",
+    },
+    {
       label: "Home",
       href: "/",
     },
@@ -49,10 +53,10 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/heroui-inc/heroui",
-    twitter: "https://twitter.com/hero_ui",
-    docs: "https://heroui.com",
-    discord: "https://discord.gg/9b6yyZKmH4",
+    github: "https://github.com/Celestial-0/elderguard",
+    twitter: "https://x.com/Celestial_Yash",
+    docs: "/docs",
+    // discord: "https://discord.gg/9b6yyZKmH4",
     sponsor: "https://patreon.com/jrgarciadev",
   },
 };

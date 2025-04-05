@@ -110,8 +110,7 @@ export default function DateTimeRangeTableUI() {
   }, [fromtime, totime, valid]);
 
   return (
-    <div className="space-y-6">
-      {/* Date Range Picker */}
+    <div >
       <DateRangePicker
         label="Select date range"
         labelPlacement="outside"
