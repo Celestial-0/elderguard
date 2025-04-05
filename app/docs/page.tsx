@@ -1,9 +1,9 @@
-import { title } from "@/components/primitives";
+import DocUI from "@/components/docUI";
 
 export default function DocsPage() {
   return (
-    <div>
-      <h1 className={title()}>Docs</h1>
-    </div>
+    <>
+      <DocUI />
+    </>
   );
 }
