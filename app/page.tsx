@@ -1,6 +1,4 @@
 import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
 import { button as buttonStyles } from "@heroui/theme";
 
 import { siteConfig } from "@/config/site";
@@ -17,7 +15,7 @@ export default function Home() {
         <span className={title({ color: "violet" })}>
           A State-of-the-Art IoT Solution&nbsp;
         </span>
-        <Divider className="bg-violet" />
+        <Divider className="bg-violet" />   
         <span className={title()}>
           
         </span>
