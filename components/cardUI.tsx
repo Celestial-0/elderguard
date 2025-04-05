@@ -10,7 +10,6 @@ import {
 
 type CardUIProps = {
   title: string;
-  description: string;
   content?: string;
 };
 
@@ -34,7 +33,7 @@ export default function CardUI({ title, content }: CardUIProps) {
       <CardBody>
         <p>
           {content ||
-            "Make beautiful websites regardless of your design experience."}
+            "Made with ❤️ by Yash | Byte&Circuits"}
         </p>
       </CardBody>
       <Divider />
