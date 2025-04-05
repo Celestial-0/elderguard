@@ -31,9 +31,11 @@ function parseCustomStringToDate(dateStr: string): Date {
 // Utility: Converts Date → "YYYY-MM-DD_HH-MM-SS"
 function formatDateToCustomString(date: Date): string {
   const pad = (n: number) => String(n).padStart(2, "0");
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}_${pad(
-    date.getHours()
-  )}-${pad(date.getMinutes())}-${pad(date.getSeconds())}`;
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+    date.getDate()
+  )}_${pad(date.getHours())}-${pad(date.getMinutes())}-${pad(
+    date.getSeconds()
+  )}`;
 }
 
 // Utility: Converts custom string → CalendarDateTime
@@ -64,10 +66,16 @@ export default function DateTimeRangeTableUI() {
   }, [fromtime, totime]);
 
   const valid = fromtime !== "" && totime !== "";
-  const defaultCalendarDateTime = customStringToCalendarDateTime(formatDateToCustomString(new Date()));
+  const defaultCalendarDateTime = customStringToCalendarDateTime(
+    formatDateToCustomString(new Date())
+  );
 
-  const startValue = valid ? customStringToCalendarDateTime(fromtime) : defaultCalendarDateTime;
-  const endValue = valid ? customStringToCalendarDateTime(totime) : defaultCalendarDateTime;
+  const startValue = valid
+    ? customStringToCalendarDateTime(fromtime)
+    : defaultCalendarDateTime;
+  const endValue = valid
+    ? customStringToCalendarDateTime(totime)
+    : defaultCalendarDateTime;
 
   const list = useAsyncList<any>({
     async load({ signal }) {
@@ -87,7 +95,6 @@ export default function DateTimeRangeTableUI() {
       }
     },
 
-  
     async sort({ items, sortDescriptor }) {
       const sorted = [...items].sort((a, b) => {
         const key = sortDescriptor.column as keyof typeof a;
@@ -110,59 +117,83 @@ export default function DateTimeRangeTableUI() {
   }, [fromtime, totime, valid]);
 
   return (
-    <div >
-      <DateRangePicker
-        label="Select date range"
-        labelPlacement="outside"
-        value={{
-          start: startValue,
-          end: endValue,
-        }}
-        onChange={(val) => {
-          if (val?.start) {
-            setFromTime(calendarDateTimeToCustomString(val.start));
-          }
-          if (val?.end) {
-            setToTime(calendarDateTimeToCustomString(val.end));
-          }
-        }}
-      />
-
-      <Table
-        aria-label="Sensor data table"
-        classNames={{ table: "min-h-[40px]" }}
-        sortDescriptor={list.sortDescriptor}
-        onSortChange={list.sort}
-      >
-        <TableHeader>
-          <TableColumn key="timestamp" allowsSorting>Timestamp</TableColumn>
-          <TableColumn key="temperature" allowsSorting>Temp (°C)</TableColumn>
-          <TableColumn key="humidity" allowsSorting>Humidity (%)</TableColumn>
-          <TableColumn key="heartRate" allowsSorting>Heart Rate</TableColumn>
-          <TableColumn key="SpO2" allowsSorting>SpO₂ (%)</TableColumn>
-          <TableColumn key="averageHeartRate" allowsSorting>Avg HR</TableColumn>
-          <TableColumn key="IR" allowsSorting>IR</TableColumn>
-          <TableColumn key="Red" allowsSorting>Red</TableColumn>
-          <TableColumn key="soundLevel" allowsSorting>Sound (dB)</TableColumn>
-          <TableColumn key="motionDetected" allowsSorting>Motion</TableColumn>
-          <TableColumn key="fireStatus" allowsSorting>Fire</TableColumn>
-        </TableHeader>
-
-        <TableBody
-          isLoading={list.isLoading}
-          items={list.items}
-          loadingContent={<Spinner label="Loading sensor data..." />}
-          emptyContent={"No data found for this time range."}
+    <>
+      
+        <DateRangePicker
+          label="Select date range"
+          labelPlacement="outside"
+          value={{
+            start: startValue,
+            end: endValue,
+          }}
+          onChange={(val) => {
+            if (val?.start) {
+              setFromTime(calendarDateTimeToCustomString(val.start));
+            }
+            if (val?.end) {
+              setToTime(calendarDateTimeToCustomString(val.end));
+            }
+          }}
+        />
+        <br />
+        <Table
+          aria-label="Sensor data table"
+          classNames={{ table: "min-h-[40px]" }}
+          sortDescriptor={list.sortDescriptor}
+          onSortChange={list.sort}
         >
-          {(item) => (
-            <TableRow key={item.id}>
-              {(columnKey) => (
-                <TableCell>{getKeyValue(item, columnKey) ?? "N/A"}</TableCell>
-              )}
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </div>
+          <TableHeader>
+            <TableColumn key="timestamp" allowsSorting>
+              Timestamp
+            </TableColumn>
+            <TableColumn key="temperature" allowsSorting>
+              Temp (°C)
+            </TableColumn>
+            <TableColumn key="humidity" allowsSorting>
+              Humidity (%)
+            </TableColumn>
+            <TableColumn key="heartRate" allowsSorting>
+              Heart Rate
+            </TableColumn>
+            <TableColumn key="SpO2" allowsSorting>
+              SpO₂ (%)
+            </TableColumn>
+            <TableColumn key="averageHeartRate" allowsSorting>
+              Avg HR
+            </TableColumn>
+            <TableColumn key="IR" allowsSorting>
+              IR
+            </TableColumn>
+            <TableColumn key="Red" allowsSorting>
+              Red
+            </TableColumn>
+            <TableColumn key="soundLevel" allowsSorting>
+              Sound (dB)
+            </TableColumn>
+            <TableColumn key="motionDetected" allowsSorting>
+              Motion
+            </TableColumn>
+            <TableColumn key="fireStatus" allowsSorting>
+              Fire
+            </TableColumn>
+          </TableHeader>
+
+          <TableBody
+            isLoading={list.isLoading}
+            items={list.items}
+            loadingContent={<Spinner label="Loading sensor data..." />}
+            emptyContent={"No data found for this time range."}
+          >
+            {(item) => (
+              <TableRow key={item.id}>
+                {(columnKey) => (
+                  <TableCell>{getKeyValue(item, columnKey) ?? "N/A"}</TableCell>
+                )}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      
+    </>
   );
 }

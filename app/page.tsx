@@ -11,23 +11,23 @@ import { BentoGridUI } from "@/components/bentoUI";
 export default function Home() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-full text-center justify-center gap-4">
+      <div className="inline-block max-w-full text-center justify-center gap-6">
         <span className={title()}>Elder Guard: </span>
         <span className={title({ color: "violet" })}>
           A State-of-the-Art IoT Solution&nbsp;
         </span>
         <br />
         <span className={title()}>
-          Providing Immediate Emergency Alerts and Real-Time Monitoring to
-          Ensure Elderly Safety
+          
         </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
+        <div className={subtitle({ class: "mt-6" })}>
+        Providing Immediate Emergency Alerts and Real-Time Monitoring to
+        Ensure Elderly Safety
         </div>
       </div>
       <BentoGridUI />
 
-      <div className="flex gap-3">
+      <div className="flex gap-3 mt-10 mb-20">
         <Link
           isExternal
           className={buttonStyles({
@@ -48,14 +48,14 @@ export default function Home() {
           GitHub
         </Link>
       </div>
-
+{/* 
       <div className="mt-8">
         <Snippet hideCopyButton hideSymbol variant="bordered">
           <span>
             Get started by editing <Code color="primary">app/page.tsx</Code>
           </span>
         </Snippet>
-      </div>
+      </div> */}
     </section>
   );
 }
