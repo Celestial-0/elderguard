@@ -128,11 +128,19 @@ export function BentoGridUI() {
           description={item.description}
           header={item.header}
           icon={item.icon}
-          className={
+          className={`${
             i === 3
               ? "md:col-span-2"
+              : i === 2 
+              ? "items-center pt-12"
+              : i === 1 
+              ? "items-center pt-12"
+              : i === 4 
+              ? "pt-12"
               : "flex"
-          }
+          }`}
+          
+          
           
         />
       ))}
