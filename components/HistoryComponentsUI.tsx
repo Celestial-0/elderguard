@@ -85,7 +85,6 @@ export default function DateTimeRangeTableUI() {
         const res = await fetch(url, { signal });
         const json = await res.json();
         if (json.success && Array.isArray(json.data)) {
-          console.log(json.data);
           return { items: json.data };
         }
         return { items: [] };

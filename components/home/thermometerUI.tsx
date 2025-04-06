@@ -1,9 +1,17 @@
 // App.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Thermometer from "./thermometer";
 
-export default function ThermometerUI() {
-  const [temp, setTemp] = useState(30);
+interface ThermometerUIProps {
+  temperature: number;
+}
+
+export default function ThermometerUI({ temperature }: ThermometerUIProps) {
+  const [temp, setTemp] = useState(0);
+
+  useEffect(() => {
+      setTemp(temperature);
+    }, [temperature]);
 
   return (
     <div className="flex flex-col items-center justify-center">
