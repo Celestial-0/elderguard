@@ -98,7 +98,7 @@ export function BentoGridUI() {
       icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "Heart Rate Monitor",
+      title: `Heart Rate Monitor ${(parseInt(data?.heartRate?.toString() ?? "0"))} BPM`,
       description: "Visualizes live heart rate to track vital signs.",
       header: (
         <Wave
