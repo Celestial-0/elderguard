@@ -27,6 +27,7 @@ export async function GET() {
       soundLevel: data.soundLevel ?? 0,
       temperature: data.temperature ?? 0,
       timestamp: data.timestamp ?? null,
+      fallDetected: data.fallDetected ?? 0
     };
 
     return NextResponse.json({ success: true, data: formatted });

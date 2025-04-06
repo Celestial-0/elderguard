@@ -12,6 +12,8 @@ import {
 } from "@tabler/icons-react";
 import ThermometerUI from "./home/thermometerUI";
 import OxygenUI from "./home/oxygenUI";
+import MotionSwitch from "./home/MotionSwitch";
+import Wave from "react-wavify";
 
 interface LiveData {
   data: {
@@ -24,11 +26,13 @@ interface LiveData {
     motionDetected: number;
     soundLevel: number;
     timestamp: string;
+    fallDetected: number;
   };
 }
 
 export function BentoGridUI() {
   const [data, setData] = useState<LiveData["data"] | null>(null);
+  // const [soundLevel, setSoundLevel] = useState("0");
 
   useEffect(() => {
     const fetchLiveData = async () => {
@@ -48,38 +52,72 @@ export function BentoGridUI() {
     fetchLiveData();
   }, []);
 
+  // useEffect(() => {
+  //   if (data?.soundLevel !== undefined) {
+  //     const raw = data.soundLevel / 1023;
+  //     const decibel = 20 * Math.log10(raw);
+  //     setSoundLevel(Number.isFinite(decibel) ? decibel.toFixed(2) : "0");
+  //   }
+  // }, [data?.soundLevel]);
+
   const items = [
     {
       title: "Temperature",
-      description: "Explore the birth of groundbreaking ideas and inventions.",
+      description: "Live temperature readings from the sensor in real-time.",
       header: <ThermometerUI temperature={data?.temperature ?? 0} />,
       icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "Oxygen level",
-      description: "Dive into the transformative power of technology.",
-      header: <OxygenUI spo2={data?.SpO2 ?? 0.00} />,
+      title: "Oxygen Level (SpO2)",
+      description: "Monitoring blood oxygen saturation for health analysis.",
+      header: <OxygenUI spo2={data?.SpO2 ?? 0.0} />,
       icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "The Art of Design",
-      description: "Discover the beauty of thoughtful and functional design.",
-      header: <Skeleton />,
+      title: "Fall Detection",
+      description: "Detects sudden movements that indicate a potential fall.",
+      header: <MotionSwitch data={data?.fallDetected ?? 0} />,
       icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "The Power of Communication",
-      description: "Understand the impact of effective communication in our lives.",
-      header: <Skeleton />,
+      title: `Sound Level: ${data?.soundLevel ?? 0} Hz`,
+      description: "Measures ambient noise levels to detect anomalies.",
+      header: (
+        <Wave mask="url(#mask)" fill="#1277b0">
+          <defs>
+            <linearGradient id="gradient" gradientTransform="rotate(90)">
+              <stop offset="0" stopColor="white" />
+              <stop offset="0.5" stopColor="black" />
+            </linearGradient>
+            <mask id="mask">
+              <rect x="0" y="0" width="2000" height="200" fill="url(#gradient)" />
+            </mask>
+          </defs>
+        </Wave>
+      ),
       icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
     },
     {
-      title: "The Pursuit of Knowledge",
-      description: "Join the quest for understanding and enlightenment.",
-      header: <Skeleton />,
+      title: "Heart Rate Monitor",
+      description: "Visualizes live heart rate to track vital signs.",
+      header: (
+        <Wave
+          fill="#e62315"
+          mask="url(#mask-heart)"
+          options={{ points: 3, speed: 0.3, amplitude: 100 }}
+        >
+          <mask id="mask-heart">
+            <path
+              d="M10,35 A20,20,0,0,1,50,35 A20,20,0,0,1,90,35 Q90,65,50,95 Q10,65,10,35 Z"
+              fill="white"
+            />
+          </mask>
+        </Wave>
+      ),
       icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
     },
   ];
+
 
   return (
     <BentoGrid className="md:grid-cols-3 gap-6">
@@ -90,13 +128,18 @@ export function BentoGridUI() {
           description={item.description}
           header={item.header}
           icon={item.icon}
-          className={i === 3 ? "md:col-span-2" : ""}
+          className={
+            i === 3
+              ? "md:col-span-2"
+              : "flex"
+          }
+          
         />
       ))}
     </BentoGrid>
   );
 }
 
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full animate-pulse rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
-);
+// const Skeleton = () => (
+//   <div className="flex flex-1 w-full h-full animate-pulse rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100"></div>
+// );
