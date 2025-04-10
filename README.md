@@ -74,9 +74,9 @@ To set up the Elder Guard web application locally:
 
 ## Usage
 
-- **Dashboard**: View real-time sensor data and system status.
+- **Home**: View real-time sensor data and system status.
 - **Alerts**: Configure and manage emergency contacts for SMS notifications.
-- **Settings**: Customize monitoring parameters and system preferences.
+- **History**: Customize monitoring parameters and system preferences.
 
 ## Contributing
 
@@ -94,8 +94,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-For more information, visit our [website](https://elderguard.vercel.app/) or contact us at [contact@elderguard.com](mailto:contact@elderguard.com).
+For more information, visit our [website](https://elderguard.vercel.app/) or contact us at [contact@elderguard.com](mailto:yashkumarsingh@ieee.org).
 
----
-
-*Note: This README is a template and should be updated with the actual repository URL, contact information, and any additional details relevant to your project.* 
