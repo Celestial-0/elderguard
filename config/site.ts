@@ -57,6 +57,6 @@ export const siteConfig = {
     twitter: "https://x.com/Celestial_Yash",
     docs: "/docs",
     // discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    sponsor: "https://patreon.com/YashKumarSingh",
   },
 };

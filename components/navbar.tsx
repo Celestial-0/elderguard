@@ -25,6 +25,7 @@ import {
   SearchIcon,
   Logo,
 } from "@/components/icons";
+import { AnimatedListUI } from "./alert";
 
 export const Navbar = () => {
   const searchInput = (
@@ -74,7 +75,7 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-
+      {/* <AnimatedListUI /> */}
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
@@ -104,6 +105,7 @@ export const Navbar = () => {
             Sponsor
           </Button>
         </NavbarItem>
+       
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

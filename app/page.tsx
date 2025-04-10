@@ -6,6 +6,7 @@ import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import { BentoGridUI } from "@/components/bentoUI";
 import { Divider } from "@heroui/react";
+import { AnimatedListUI } from "@/components/alert";
 
 export default function Home() {
   return (
@@ -17,7 +18,6 @@ export default function Home() {
         </span>
         <Divider className="bg-violet" />   
         <span className={title()}>
-          
         </span>
         <div className={subtitle({ class: "mt-6" })}>
         Providing Immediate Emergency Alerts and Real-Time Monitoring to
@@ -25,7 +25,6 @@ export default function Home() {
         </div>
       </div>
       <BentoGridUI />
-
       <div className="flex gap-3 mt-10 mb-20">
         <Link
           isExternal
