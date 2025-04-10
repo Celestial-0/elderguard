@@ -94,5 +94,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-For more information, visit our [website](https://elderguard.vercel.app/) or contact us at [contact@elderguard.com](mailto:yashkumarsingh@ieee.org).
+For more information, visit our [yashkumarsingh.tech](https://www.yashkumarsingh.tech/) or contact us at [yashkumarsingh@ieee.org](mailto:yashkumarsingh@ieee.org).
 
