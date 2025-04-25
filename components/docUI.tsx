@@ -75,13 +75,13 @@ export default function DocUI() {
             <span className="font-bold">Database:</span>{" "}
             {data.technical_architecture.tech_stack.database}
           </p>
-          <p>
+          <p className="mb-2">
+            <span className="font-bold">Authentication:</span>{" "}
+            {data.technical_architecture.tech_stack.auth}
+          </p>
+          <p className="mb-2">
             <span className="font-bold">IDE:</span>{" "}
             {data.technical_architecture.tech_stack.ide}
-          </p>
-          <p>
-            <span className="font-bold">Auth:</span>{" "}
-            {data.technical_architecture.tech_stack.auth}
           </p>
         </div>
 

@@ -174,6 +174,9 @@ export default function DateTimeRangeTableUI() {
             <TableColumn key="touchSOS" allowsSorting>
               SOS
             </TableColumn>
+            <TableColumn key="fallDetected" allowsSorting>
+              Fall Detected
+            </TableColumn>
           </TableHeader>
 
           <TableBody
