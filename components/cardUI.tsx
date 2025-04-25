@@ -5,8 +5,8 @@ export default function CardUI( key_features: { name: string; description: strin
     <div className="max-w-[900px] gap-5 grid grid-cols-12 grid-rows-2 px-8">
       <Card className="col-span-12 sm:col-span-4 h-[300px]">
         <CardHeader className="absolute z-10 top-1 flex-col !items-start">
-          <p className="text-tiny text-white/60 uppercase font-bold">{key_features[0].name}</p>
-          <h4 className="text-white font-medium text-large">{key_features[0].description}</h4>
+          <p className="text-tiny text-white/60 uppercase font-bold">{key_features[4].name}</p>
+          <h4 className="text-white font-medium text-large">{key_features[4].description}</h4>
         </CardHeader>
         <Image
           removeWrapper
