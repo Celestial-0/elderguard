@@ -46,12 +46,12 @@ export default function DocUI() {
           <ul className="space-y-3">
             {data.technical_architecture.hardware_components.map(
               (component, index) => (
-                <li key={index}>
-                  <span className="font-bold text-white">
+                <div key={index}>
+                  <span className="font-bold">
                     {component.name}:
                   </span>{" "}
                   {component.description}
-                </li>
+                </div>
               )
             )}
           </ul>
@@ -102,7 +102,7 @@ export default function DocUI() {
         <ul className="space-y-3">
           {data.unique_selling_points.map((usp, index) => (
             <li key={index}>
-              <span className="font-bold text-white">{usp.name}:</span>{" "}
+              <span className="font-bold ">{usp.name}:</span>{" "}
               {usp.description}
             </li>
           ))}

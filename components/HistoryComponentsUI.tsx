@@ -4,11 +4,7 @@ import React, { useState, useEffect } from "react";
 import { DateRangePicker, Divider } from "@heroui/react";
 import {
   parseAbsoluteToLocal,
-  CalendarDateTime,
-  getLocalTimeZone,
-  toCalendarDateTime,
   ZonedDateTime,
-  now
 } from "@internationalized/date";
 import {
   Table,
@@ -158,9 +154,9 @@ export default function DateTimeRangeTableUI() {
             <TableColumn key="SpO2" allowsSorting>
               SpO₂ (%)
             </TableColumn>
-            <TableColumn key="averageHeartRate" allowsSorting>
+            {/* <TableColumn key="averageHeartRate" allowsSorting>
               Avg HR
-            </TableColumn>
+            </TableColumn> */}
             <TableColumn key="IR" allowsSorting>
               IR
             </TableColumn>

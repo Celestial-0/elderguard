@@ -1,11 +1,9 @@
-import { title } from "@/components/primitives";
+import AboutUI from "@/components/about/AboutUI";
 
 export default function AboutPage() {
   return (
     <>
-    <div>
-      <h1 className={title()}>Meet the Team</h1>
-    </div>
+      <AboutUI />
     </>
   );
 }
