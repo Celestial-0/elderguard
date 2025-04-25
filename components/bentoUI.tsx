@@ -58,7 +58,7 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
     };
 
     fetchLiveData(); // initial fetch
-    const intervalId = setInterval(fetchLiveData, 30000); // fetch every 30 seconds
+    const intervalId = setInterval(fetchLiveData, 3000); // fetch every 30 seconds
 
     return () => {
       isMounted = false;
