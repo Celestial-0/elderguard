@@ -15,8 +15,6 @@ import OxygenUI from "./home/oxygenUI";
 import MotionSwitch from "./home/MotionSwitch";
 import Wave from "react-wavify";
 import { LiveData } from "@/types/liveData";
-// import { useSensorMonitoring } from "@/helpers/sensorMonitoring";
-
 
 const DEMO_DATA: LiveData["data"] = {
   temperature: 30,
@@ -33,7 +31,7 @@ const DEMO_DATA: LiveData["data"] = {
 
 export function BentoGridUI({ demo = false }: { demo?: boolean }) {
   const [data, setData] = useState<LiveData["data"] | null>(null);
-  // const { monitorSensorData } = useSensorMonitoring();
+  const [reloadFlag, setReloadFlag] = useState(false); // To trigger a forced re-render
   const soundMaskId = useId();
   const heartMaskId = useId();
 
@@ -44,32 +42,29 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
     }
 
     let isMounted = true;
-    async function fetchLiveData() {
+
+    const fetchLiveData = async () => {
       try {
         const res = await fetch("/api/live");
         if (!res.ok) throw new Error("Network response was not ok");
         const json = await res.json();
         if (isMounted && json.success && json.data) {
           setData(json.data);
+          setReloadFlag(prev => !prev); // Toggle reloadFlag to trigger re-render
         }
       } catch (err) {
         console.error("Failed to fetch live data:", err);
       }
-    }
+    };
 
-    fetchLiveData();
+    fetchLiveData(); // initial fetch
+    const intervalId = setInterval(fetchLiveData, 3); // fetch every 30 seconds
+
     return () => {
       isMounted = false;
+      clearInterval(intervalId); // cleanup interval on unmount
     };
   }, [demo]);
-
-  // useEffect(() => {
-  //   if (data && !demo) {
-  //     monitorSensorData(data).catch(error => {
-  //       console.error("Error sending warning notifications:", error);
-  //     });
-  //   }
-  // }, [data, demo, monitorSensorData]);
 
   const items = useMemo(
     () => [
