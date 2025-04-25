@@ -156,7 +156,7 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
           header={item.header}
           icon={item.icon}
           className={cn(
-            idx === 3 ? `md:col-span-${item.colSpan}` : 2,
+            idx === 3 ? `md:col-span-2` : `md:col-span-${item.colSpan}`,
             idx === 2 && "items-center pt-12",
             idx === 1 && "items-center pt-12",
             idx === 4 && "pt-12",
