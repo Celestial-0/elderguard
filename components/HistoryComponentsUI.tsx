@@ -153,16 +153,16 @@ export default function DateTimeRangeTableUI() {
             <TableColumn key="heartRate" allowsSorting>
               Heart Rate
             </TableColumn>
-            <TableColumn key="SpO2" allowsSorting>
+            <TableColumn key="spO2" allowsSorting>
               SpO₂ (%)
             </TableColumn>
             {/* <TableColumn key="averageHeartRate" allowsSorting>
               Avg HR
             </TableColumn> */}
-            <TableColumn key="IR" allowsSorting>
+            <TableColumn key="iR" allowsSorting>
               IR
             </TableColumn>
-            <TableColumn key="Red" allowsSorting>
+            <TableColumn key="red" allowsSorting>
               Red
             </TableColumn>
             <TableColumn key="soundLevel" allowsSorting>
@@ -171,8 +171,8 @@ export default function DateTimeRangeTableUI() {
             <TableColumn key="motionDetected" allowsSorting>
               Motion
             </TableColumn>
-            <TableColumn key="fireStatus" allowsSorting>
-              Fire
+            <TableColumn key="touchSOS" allowsSorting>
+              SOS
             </TableColumn>
           </TableHeader>
 
