@@ -7,6 +7,8 @@ import {
   CalendarDateTime,
   getLocalTimeZone,
   toCalendarDateTime,
+  ZonedDateTime,
+  now
 } from "@internationalized/date";
 import {
   Table,
@@ -38,15 +40,15 @@ function formatDateToCustomString(date: Date): string {
   )}`;
 }
 
-// Utility: Converts custom string → CalendarDateTime
-function customStringToCalendarDateTime(dateStr: string): CalendarDateTime {
+// Utility: Converts custom string → ZonedDateTime
+function customStringToCalendarDateTime(dateStr: string): ZonedDateTime {
   const date = parseCustomStringToDate(dateStr);
-  return toCalendarDateTime(parseAbsoluteToLocal(date.toISOString()));
+  return parseAbsoluteToLocal(date.toISOString());
 }
 
-// Utility: Converts CalendarDateTime → custom string
-function calendarDateTimeToCustomString(dt: CalendarDateTime): string {
-  const date = dt.toDate(getLocalTimeZone());
+// Utility: Converts ZonedDateTime → custom string
+function calendarDateTimeToCustomString(dt: ZonedDateTime): string {
+  const date = dt.toDate();
   return formatDateToCustomString(date);
 }
 
@@ -66,16 +68,15 @@ export default function DateTimeRangeTableUI() {
   }, [fromtime, totime]);
 
   const valid = fromtime !== "" && totime !== "";
-  const defaultCalendarDateTime = customStringToCalendarDateTime(
-    formatDateToCustomString(new Date())
-  );
+  // Create a default ZonedDateTime using parseAbsoluteToLocal
+  const defaultTime = parseAbsoluteToLocal(new Date().toISOString());
 
   const startValue = valid
     ? customStringToCalendarDateTime(fromtime)
-    : defaultCalendarDateTime;
+    : defaultTime;
   const endValue = valid
     ? customStringToCalendarDateTime(totime)
-    : defaultCalendarDateTime;
+    : defaultTime;
 
   const list = useAsyncList<any>({
     async load({ signal }) {
@@ -122,15 +123,15 @@ export default function DateTimeRangeTableUI() {
           label="Select date range"
           labelPlacement="outside"
           value={{
-            start: startValue,
-            end: endValue,
+            start: startValue as any,
+            end: endValue as any,
           }}
           onChange={(val) => {
             if (val?.start) {
-              setFromTime(calendarDateTimeToCustomString(val.start));
+              setFromTime(calendarDateTimeToCustomString(val.start as ZonedDateTime));
             }
             if (val?.end) {
-              setToTime(calendarDateTimeToCustomString(val.end));
+              setToTime(calendarDateTimeToCustomString(val.end as ZonedDateTime));
             }
           }}
         />
