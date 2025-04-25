@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { DateRangePicker, Divider } from "@heroui/react";
+import { DateRangePicker, Divider, SortDescriptor } from "@heroui/react";
 import {
   parseAbsoluteToLocal,
   ZonedDateTime,
@@ -74,6 +74,8 @@ export default function DateTimeRangeTableUI() {
     ? customStringToCalendarDateTime(totime)
     : defaultTime;
 
+    
+
   const list = useAsyncList<any>({
     async load({ signal }) {
       if (!valid) return { items: [] };
@@ -100,7 +102,7 @@ export default function DateTimeRangeTableUI() {
         let cmp = isNumber
           ? (valA as number) - (valB as number)
           : String(valA).localeCompare(String(valB));
-        return sortDescriptor.direction === "descending" ? -cmp : cmp;
+        return sortDescriptor.direction === "ascending" ? -cmp : cmp;
       });
       return { items: sorted };
     },

@@ -9,8 +9,8 @@ interface ThermometerProps {
 
 const getColor = (temp: number): string => {
   if (temp < 0) return "bg-blue-500";
-  if (temp < 25) return "bg-green-500";
-  if (temp < 35) return "bg-yellow-400";
+  if (temp < 20) return "bg-green-500";
+  if (temp < 30) return "bg-yellow-400";
   return "bg-red-500";
 };
 

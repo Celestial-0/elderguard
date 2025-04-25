@@ -31,7 +31,7 @@ interface LiveData {
 }
 
 const DEMO_DATA: LiveData["data"] = {
-  temperature: 25.6,
+  temperature: 30,
   SpO2: 93,
   averageHeartRate: 75,
   fireStatus: 0,
@@ -80,21 +80,21 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
         title: "Temperature",
         description: "Live temperature readings from the sensor in real-time.",
         header: <ThermometerUI temperature={data?.temperature ?? 0} />,
-        icon: <IconThermometer className="h-4 w-4 text-neutral-500" />,
+        icon: <IconThermometer className="h-4 w-4 " />,
         colSpan: 1,
       },
       {
         title: "Oxygen Level (SpO2)",
         description: "Monitoring blood oxygen saturation for health analysis.",
         header: <OxygenUI spo2={data?.SpO2 ?? 0} />,
-        icon: <IconDroplet className="h-4 w-4 text-neutral-500" />,
+        icon: <IconDroplet className="h-4 w-4 " />,
         colSpan: 1,
       },
       {
         title: "Fall Detection",
         description: "Detects sudden movements that indicate a potential fall.",
         header: <MotionSwitch data={data?.fallDetected ?? 0} />,
-        icon: <IconFall className="h-4 w-4 text-neutral-500" />,
+        icon: <IconFall className="h-4 w-4 " />,
         colSpan: 1,
       },
       {
@@ -113,7 +113,7 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
             </defs>
           </Wave>
         ),
-        icon: <IconVolume className="h-4 w-4 text-neutral-500" />,
+        icon: <IconVolume className="h-4 w-4 " />,
         colSpan: 2,
       },
       {
@@ -135,7 +135,7 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
             </defs>
           </Wave>
         ),
-        icon: <IconHeart className="h-4 w-4 text-neutral-500" />,
+        icon: <IconHeart className="h-4 w-4 " />,
         colSpan: 1,
       },
     ],
