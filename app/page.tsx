@@ -35,7 +35,7 @@ export default function Home() {
       {user.isSignedIn && <span className="text-2xl font-semibold mb-4 text-cyan-500" >Welcome, {userName}!</span>}
       {user.isSignedIn && <BentoGridUI />}
       {!user.isSignedIn && <BentoGridUI demo={true}/>}
-      {!user.isSignedIn && <div>This is a demo data. Please sign in to use the full functionality.</div>}
+      {!user.isSignedIn && <div className="text-base font-thin">This is a demo data. Please sign in to use the full functionality.</div>}
 
       <div className="flex gap-3 mt-10 mb-20">
         <Link

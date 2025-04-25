@@ -45,7 +45,13 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <ClerkProvider>
+        <ClerkProvider
+         appearance={{
+          layout: {
+            unsafe_disableDevelopmentModeWarnings: true,
+          },
+        }}
+        >
 
         
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
