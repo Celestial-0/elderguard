@@ -1,7 +1,6 @@
-import { NextResponse } from "next/server";
+import { DocData } from "@/types/docData";
 
-export async function GET() {
-  const elderGuardData = {
+  export const docData : DocData = {
     title: "Elder Guard",
     introduction: {
       text: "As the global population ages, ensuring the safety and well-being of elderly individuals has become increasingly vital. Falls and medical emergencies represent significant risks for older adults in today’s world. Elder Guard, an AI-powered, IoT-based solution, addresses these challenges effectively. Designed for elderly individuals living independently or in care facilities, this system provides instant alerts and remote monitoring to enhance safety and health."
@@ -62,7 +61,8 @@ export async function GET() {
         web_tools: ["Dotenv"],
         deployment: "Vercel",
         database: "Google Firebase",
-        ide: "Arduino IDE"
+        ide: "Arduino IDE",
+        auth: "Clerk"
       },
       working_mechanism: [
         "Sensors collect real-time physiological and environmental data.",
@@ -106,6 +106,3 @@ export async function GET() {
       text: "Elder Guard combines cutting-edge AI and IoT technology to deliver a secure, non-intrusive solution for elderly safety. By providing real-time monitoring and instant emergency notifications, it offers peace of mind to both seniors and their caregivers. With planned enhancements, Elder Guard has the potential to become a cornerstone of elderly healthcare and monitoring worldwide."
     }
   };
-
-  return NextResponse.json(elderGuardData, { status: 200 });
-}

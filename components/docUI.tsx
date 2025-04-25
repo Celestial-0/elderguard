@@ -1,44 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { title } from "@/components/primitives";
 import CardUI from "./cardUI";
+import { DocData } from "@/types/docData";
+import { docData } from "@/constants/docData";
 
 export default function DocUI() {
-  interface DocData {
-    title: string;
-    introduction: { text: string };
-    problem_statement: { text: string };
-    solution_overview: { text: string };
-    key_features: { name: string; description: string }[];
-    technical_architecture: {
-      hardware_components: { name: string; description: string }[];
-      tech_stack: {
-        web_stack: string[];
-        web_tools: string[];
-        deployment: string;
-        database: string;
-        ide: string;
-      };
-      working_mechanism: string[];
-    };
-    unique_selling_points: { name: string; description: string }[];
-    market_potential_and_impact: {
-      market_potential: string[];
-      impact: string[];
-    };
-    future_enhancements: string[];
-    conclusion: { text: string };
-  }
-
-  const [data, setData] = useState<DocData | null>(null);
-
-  useEffect(() => {
-    fetch("/api/doc")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.error(err));
-  }, []);
+  const data = docData as DocData;
 
   if (!data) return <p className="p-4 text-left">Loading...</p>;
 
@@ -109,6 +78,10 @@ export default function DocUI() {
           <p>
             <span className="font-bold">IDE:</span>{" "}
             {data.technical_architecture.tech_stack.ide}
+          </p>
+          <p>
+            <span className="font-bold">Auth:</span>{" "}
+            {data.technical_architecture.tech_stack.auth}
           </p>
         </div>
 

@@ -1,3 +1,4 @@
+'use client';
 import { Link } from "@heroui/link";
 import { button as buttonStyles } from "@heroui/theme";
 
@@ -6,9 +7,15 @@ import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import { BentoGridUI } from "@/components/bentoUI";
 import { Divider } from "@heroui/react";
+
+import { useUser } from "@clerk/nextjs";
 import { AnimatedListUI } from "@/components/alert";
 
 export default function Home() {
+
+  const user = useUser();
+  const userName = user.user?.fullName || "Guest";
+
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-full text-center justify-center gap-6">
@@ -24,7 +31,11 @@ export default function Home() {
         Ensure Elderly Safety
         </div>
       </div>
-      <BentoGridUI />
+      {user.isSignedIn && <span className="text-2xl font-semibold mb-4 text-cyan-500" >Welcome, {userName}!</span>}
+      {user.isSignedIn && <BentoGridUI />}
+      {!user.isSignedIn && <BentoGridUI demo={true}/>}
+      {!user.isSignedIn && <div>This is a demo data. Please sign in to use the full functionality.</div>}
+
       <div className="flex gap-3 mt-10 mb-20">
         <Link
           isExternal
@@ -46,14 +57,6 @@ export default function Home() {
           GitHub
         </Link>
       </div>
-{/* 
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div> */}
     </section>
   );
 }

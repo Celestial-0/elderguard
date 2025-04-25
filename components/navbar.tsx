@@ -26,6 +26,13 @@ import {
   Logo,
 } from "@/components/icons";
 import { AnimatedListUI } from "./alert";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 export const Navbar = () => {
   const searchInput = (
@@ -64,7 +71,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
                 color="foreground"
                 href={item.href}
@@ -93,7 +100,7 @@ export const Navbar = () => {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">{searchInput}</NavbarItem>
-        <NavbarItem className="hidden md:flex">
+        {/* <NavbarItem className="hidden md:flex">
           <Button
             isExternal
             as={Link}
@@ -104,14 +111,31 @@ export const Navbar = () => {
           >
             Sponsor
           </Button>
+        </NavbarItem> */}
+        <NavbarItem className="hidden md:flex">
+        <SignedOut>
+          <SignInButton>
+            <Button
+              className="text-sm font-normal text-default-600 bg-default-100"
+              variant="flat"
+            >
+              Sign In
+            </Button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
         </NavbarItem>
-       
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <GithubIcon className="text-default-500" />
         </Link>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
         <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
@@ -123,19 +147,32 @@ export const Navbar = () => {
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
-                  index === 2
+                  index === 0
                     ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
+                    : // : index === siteConfig.navMenuItems.length - 1
+                      // ? "danger"
+                      "foreground"
                 }
-                href="#"
+                href={`${item.href}`}
                 size="lg"
               >
                 {item.label}
               </Link>
             </NavbarMenuItem>
           ))}
+          <NavbarMenuItem>
+            <SignedOut>
+              <SignUpButton>
+                <Link
+                  isExternal
+                  color="danger"
+                  size="lg"
+                >
+                  Sign In
+                </Link>
+              </SignUpButton>
+            </SignedOut>
+          </NavbarMenuItem>
         </div>
       </NavbarMenu>
     </HeroUINavbar>

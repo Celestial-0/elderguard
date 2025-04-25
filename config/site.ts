@@ -28,16 +28,20 @@ export const siteConfig = {
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Docs",
+      href: "/docs",
     },
     {
       label: "History",
       href: "/history",
     },
     {
-      label: "Home",
-      href: "/",
+      label: "Analytics",
+      href: "/analytics",
     },
     {
       label: "Team",
@@ -47,10 +51,10 @@ export const siteConfig = {
       label: "Help & Feedback",
       href: "/help-feedback",
     },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
+    // {
+    //   label: "Logout",
+    //   href: "/logout",
+    // },
   ],
   links: {
     github: "https://github.com/Celestial-0/elderguard",
