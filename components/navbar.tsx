@@ -20,8 +20,6 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import {
   TwitterIcon,
   GithubIcon,
-  // DiscordIcon,
-  HeartFilledIcon,
   SearchIcon,
   Logo,
 } from "@/components/icons";
@@ -82,7 +80,7 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-      {/* <AnimatedListUI /> */}
+      <AnimatedListUI />
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"

@@ -1,6 +1,7 @@
 import {Card, CardHeader, Image} from "@heroui/react";
-import forthImage from "@/public/img/CardUI/4.png"
 import firstImage from "@/public/img/CardUI/1.png"
+import thirdImage from "@/public/img/CardUI/3.png"
+import forthImage from "@/public/img/CardUI/4.png"
 export default function CardUI( key_features: { name: string; description: string }[]) {
   return (
     <div className="max-w-[900px] gap-5 grid grid-cols-12 grid-rows-2 px-8">
@@ -48,8 +49,8 @@ export default function CardUI( key_features: { name: string; description: strin
         <Image
           removeWrapper
           alt="Card example background"
-          className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-          src="https://heroui.com/images/card-example-6.jpeg"
+          className="z-0 h-screen w-fit  object-cover"
+          src={thirdImage.src}
         />
         
       </Card>

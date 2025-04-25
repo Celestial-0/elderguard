@@ -14,25 +14,13 @@ import ThermometerUI from "./home/thermometerUI";
 import OxygenUI from "./home/oxygenUI";
 import MotionSwitch from "./home/MotionSwitch";
 import Wave from "react-wavify";
+import { LiveData } from "@/types/liveData";
+// import { useSensorMonitoring } from "@/helpers/sensorMonitoring";
 
-interface LiveData {
-  data: {
-    temperature: number;
-    SpO2: number;
-    averageHeartRate: number;
-    fireStatus: number;
-    heartRate: number;
-    humidity: number;
-    motionDetected: number;
-    soundLevel: number;
-    timestamp: string;
-    fallDetected: number;
-  };
-}
 
 const DEMO_DATA: LiveData["data"] = {
   temperature: 30,
-  SpO2: 93,
+  spO2: 93,
   averageHeartRate: 75,
   fireStatus: 0,
   heartRate: 70,
@@ -45,6 +33,7 @@ const DEMO_DATA: LiveData["data"] = {
 
 export function BentoGridUI({ demo = false }: { demo?: boolean }) {
   const [data, setData] = useState<LiveData["data"] | null>(null);
+  // const { monitorSensorData } = useSensorMonitoring();
   const soundMaskId = useId();
   const heartMaskId = useId();
 
@@ -74,6 +63,14 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
     };
   }, [demo]);
 
+  // useEffect(() => {
+  //   if (data && !demo) {
+  //     monitorSensorData(data).catch(error => {
+  //       console.error("Error sending warning notifications:", error);
+  //     });
+  //   }
+  // }, [data, demo, monitorSensorData]);
+
   const items = useMemo(
     () => [
       {
@@ -86,7 +83,7 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
       {
         title: "Oxygen Level (SpO2)",
         description: "Monitoring blood oxygen saturation for health analysis.",
-        header: <OxygenUI spo2={data?.SpO2 ?? 0} />,
+        header: <OxygenUI spo2={data?.spO2 ?? 0} />,
         icon: <IconDroplet className="h-4 w-4 " />,
         colSpan: 1,
       },

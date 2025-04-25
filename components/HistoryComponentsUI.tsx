@@ -102,7 +102,7 @@ export default function DateTimeRangeTableUI() {
         let cmp = isNumber
           ? (valA as number) - (valB as number)
           : String(valA).localeCompare(String(valB));
-        return sortDescriptor.direction === "ascending" ? -cmp : cmp;
+        return sortDescriptor.direction === "descending" ? -cmp : cmp;
       });
       return { items: sorted };
     },

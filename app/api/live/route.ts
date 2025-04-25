@@ -16,9 +16,9 @@ export async function GET() {
 
 
     const formatted = {
-      IR: data.IR ?? 0,
-      Red: data.Red ?? 0,
-      SpO2: data.SpO2 ?? 0,
+      iR: data.iR ?? 0,
+      red: data.red ?? 0,
+      spO2: data.spO2 ?? 0,
       averageHeartRate: data.averageHeartRate ?? 0,
       fireStatus: data.fireStatus ?? 0,
       heartRate: data.heartRate ?? 0,
@@ -27,7 +27,8 @@ export async function GET() {
       soundLevel: data.soundLevel ?? 0,
       temperature: data.temperature ?? 0,
       timestamp: data.timestamp ?? null,
-      fallDetected: data.fallDetected ?? 0
+      fallDetected: data.fallDetected ?? 0,
+      touchSOS: data.touchSOS ?? 0,
     };
 
     return NextResponse.json({ success: true, data: formatted });
