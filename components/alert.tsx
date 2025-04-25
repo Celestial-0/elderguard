@@ -41,7 +41,7 @@ const Notification = ({ name, description, icon, color, timestamp }: Item) => {
     
 
     updateTime();
-    const interval = setInterval(updateTime, 6); // update every minute
+    const interval = setInterval(updateTime, 60000); // update every minute
     return () => clearInterval(interval);
   }, [timestamp]);
 

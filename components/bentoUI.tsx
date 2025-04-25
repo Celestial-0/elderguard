@@ -24,7 +24,7 @@ const DEMO_DATA: LiveData["data"] = {
   heartRate: 70,
   humidity: 50,
   motionDetected: 0,
-  soundLevel: 1450,
+  soundLevel: 66,
   timestamp: "2025-01-01T00:00:00.000Z",
   fallDetected: 0,
 };
@@ -58,7 +58,7 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
     };
 
     fetchLiveData(); // initial fetch
-    const intervalId = setInterval(fetchLiveData, 3); // fetch every 30 seconds
+    const intervalId = setInterval(fetchLiveData, 30000); // fetch every 30 seconds
 
     return () => {
       isMounted = false;
