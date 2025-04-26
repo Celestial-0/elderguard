@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Navbar as HeroUINavbar,
@@ -19,12 +19,7 @@ import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  SearchIcon,
-  Logo,
-} from "@/components/icons";
+import { TwitterIcon, GithubIcon, SearchIcon, Logo } from "@/components/icons";
 import { AnimatedListUI } from "./alert";
 import {
   SignedIn,
@@ -84,8 +79,10 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-      {user.isSignedIn && <AnimatedListUI />}
-      {/* <AnimatedListUI /> */}
+      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full">
+        {user.isSignedIn && <AnimatedListUI />}
+      </NavbarContent>
+
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
@@ -116,19 +113,19 @@ export const Navbar = () => {
           </Button>
         </NavbarItem> */}
         <NavbarItem className="hidden md:flex">
-        <SignedOut>
-          <SignInButton>
-            <Button
-              className="text-sm font-normal text-default-600 bg-default-100"
-              variant="flat"
-            >
-              Sign In
-            </Button>
-          </SignInButton>
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
+          <SignedOut>
+            <SignInButton>
+              <Button
+                className="text-sm font-normal text-default-600 bg-default-100"
+                variant="flat"
+              >
+                Sign In
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </NavbarItem>
       </NavbarContent>
 
@@ -149,13 +146,7 @@ export const Navbar = () => {
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={
-                  index === 0
-                    ? "primary"
-                    : // : index === siteConfig.navMenuItems.length - 1
-                      // ? "danger"
-                      "foreground"
-                }
+                color={index === 0 ? "primary" : "foreground"}
                 href={`${item.href}`}
                 size="lg"
               >
@@ -166,15 +157,14 @@ export const Navbar = () => {
           <NavbarMenuItem>
             <SignedOut>
               <SignUpButton>
-                <Link
-                  isExternal
-                  color="danger"
-                  size="lg"
-                >
+                <Link isExternal color="danger" size="lg">
                   Sign In
                 </Link>
               </SignUpButton>
             </SignedOut>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            {user.isSignedIn && <AnimatedListUI />}
           </NavbarMenuItem>
         </div>
       </NavbarMenu>
