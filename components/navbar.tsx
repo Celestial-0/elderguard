@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -30,9 +32,11 @@ import {
   SignInButton,
   SignUpButton,
   UserButton,
+  useUser,
 } from "@clerk/nextjs";
 
 export const Navbar = () => {
+  const user = useUser();
   const searchInput = (
     <Input
       aria-label="Search"
@@ -80,7 +84,8 @@ export const Navbar = () => {
           ))}
         </ul>
       </NavbarContent>
-      <AnimatedListUI />
+      {user.isSignedIn && <AnimatedListUI />}
+      {/* <AnimatedListUI /> */}
       <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"

@@ -9,7 +9,6 @@ import { BentoGridUI } from "@/components/bentoUI";
 import { Divider } from "@heroui/react";
 
 import { useUser } from "@clerk/nextjs";
-import { AnimatedListUI } from "@/components/alert";
 
 export default function Home() {
 

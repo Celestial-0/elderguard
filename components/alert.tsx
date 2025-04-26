@@ -11,6 +11,7 @@ interface Item {
   icon: string;
   color: string;
   timestamp: string;
+  warningType: 'fall' | 'fire' | 'sos' | 'other';
 }
 
 const Notification = ({ name, description, icon, color, timestamp }: Item) => {
@@ -79,6 +80,52 @@ const Notification = ({ name, description, icon, color, timestamp }: Item) => {
 export function AnimatedListUI({ className }: { className?: string }) {
   const [notifications, setNotifications] = useState<Item[]>([]);
   const lastData = useRef<any>({});
+  const emailSentRef = useRef<Record<string, boolean>>({});
+
+  // Function to send email notification
+  const sendEmailNotification = async (notification: Item) => {
+    try {
+      const emailKey = `${notification.warningType}_${notification.timestamp}`;
+      
+      // Only send email once per warning event
+      if (emailSentRef.current[emailKey]) {
+        return;
+      }
+      
+      const recipientEmail = localStorage.getItem('elderguard_email') || '';
+      const recipientName = localStorage.getItem('elderguard_name') || 'Caregiver';
+      
+      if (!recipientEmail) {
+        console.warn('No recipient email configured for alerts');
+        return;
+      }
+
+      // Use the consistent email API endpoint
+      const response = await fetch('/api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to: recipientEmail,
+          subject: `ElderGuard Alert: ${notification.name}`,
+          userName: recipientName,
+          message: notification.description,
+          warningType: notification.warningType,
+        }),
+      });
+
+      if (response.ok) {
+        console.log(`Email notification sent for ${notification.warningType}`);
+        emailSentRef.current[emailKey] = true;
+      } else {
+        const errorData = await response.json();
+        console.error('Failed to send email notification:', errorData.message || 'Unknown error');
+      }
+    } catch (error) {
+      console.error('Error sending email notification:', error);
+    }
+  };
 
   useEffect(() => {
     const fetchLiveData = async () => {
@@ -101,31 +148,40 @@ export function AnimatedListUI({ className }: { className?: string }) {
           const newNotifications: Item[] = [];
 
           if (data.fireStatus) {
-            newNotifications.push({
+            const fireNotification = {
               name: "Fire warning",
               description: "A fire has been detected in the vicinity.",
               icon: "🔥",
               color: "#FF7043",
               timestamp,
-            });
+              warningType: 'fire' as const,
+            };
+            newNotifications.push(fireNotification);
+            sendEmailNotification(fireNotification);
           }
           if (data.fallDetected) {
-            newNotifications.push({
+            const fallNotification = {
               name: "Fall Detected",
               description: "A fall has been detected.",
               icon: "🤕",
               color: "#FFC107",
               timestamp,
-            });
+              warningType: 'fall' as const,
+            };
+            newNotifications.push(fallNotification);
+            sendEmailNotification(fallNotification);
           }
           if (data.touchSOS) {
-            newNotifications.push({
+            const sosNotification = {
               name: "SOS Detected",
               description: "An SOS signal has been triggered.",
               icon: "🚨",
               color: "#1E88E5",
               timestamp,
-            });
+              warningType: 'sos' as const,
+            };
+            newNotifications.push(sosNotification);
+            sendEmailNotification(sosNotification);
           }
 
           setNotifications(newNotifications);
