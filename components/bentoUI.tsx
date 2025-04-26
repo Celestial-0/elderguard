@@ -15,6 +15,7 @@ import OxygenUI from "./home/oxygenUI";
 import MotionSwitch from "./home/MotionSwitch";
 import Wave from "react-wavify";
 import { LiveData } from "@/types/liveData";
+import { Skeleton } from "./ui/skeleton";
 
 const DEMO_DATA: LiveData["data"] = {
   temperature: 30,
@@ -135,8 +136,28 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
   );
 
   if (!data) {
-    return <div>Loading...</div>;
+    return (
+      <BentoGrid className="md:grid-cols-3 gap-6">
+        {Array.from({ length: 5 }).map((_, idx) => (
+          <BentoGridItem
+            key={idx}
+            title={<Skeleton className="h-6 w-32" />}
+            description={<Skeleton className="h-6 w-48 mt-2" />}
+            header={<Skeleton className="h-full w-full" />}
+            icon={<Skeleton className="h-4 w-4 rounded-full" />}
+            className={cn(
+              idx === 3 ? `md:col-span-2` : `md:col-span-1`,
+              idx === 2 && "items-center pt-12",
+              idx === 1 && "items-center pt-12",
+              idx === 4 && "pt-12",
+              idx === 0 && "items-center pt-12"
+            )}
+          />
+        ))}
+      </BentoGrid>
+    );
   }
+  
 
   return (
     <BentoGrid className="md:grid-cols-3 gap-6">
