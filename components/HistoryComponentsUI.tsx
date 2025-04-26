@@ -156,9 +156,6 @@ export default function DateTimeRangeTableUI() {
             <TableColumn key="spO2" allowsSorting>
               SpO₂ (%)
             </TableColumn>
-            {/* <TableColumn key="averageHeartRate" allowsSorting>
-              Avg HR
-            </TableColumn> */}
             <TableColumn key="iR" allowsSorting>
               IR
             </TableColumn>
