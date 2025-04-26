@@ -90,7 +90,7 @@ export function BentoGridUI({ demo = false }: { demo?: boolean }) {
         colSpan: 1,
       },
       {
-        title: `Sound Level: ${Math.round(data?.soundLevel ?? 0)} Db`,
+        title: `Sound Level: ${Math.round(data?.soundLevel ?? 0)} dB`,
         description: "Measures ambient noise levels to detect anomalies.",
         header: (
           <Wave mask={`url(#${soundMaskId})`} fill="#1277b0">
